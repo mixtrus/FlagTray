@@ -1,106 +1,63 @@
+# 🌍 Country Flag Tray Icon 🚩
 
+Simple Python application that displays your current country's flag in the system tray.
 
-```markdown
-# 🌍 Country Flag Tray App 🇺🇳
+## 🌟 Features
 
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen) ![MIT License](https://img.shields.io/badge/license-MIT-blue) ![Python](https://img.shields.io/badge/python-3.8%2B-blueviolet) ![Stars](https://img.shields.io/github/stars/mixtrus/country-flag-app?style=social)
+- 🌐 Automatically detects your country based on IP
+- 🖼️ Displays country flag in system tray
+- 🔌 Lightweight and minimalistic
 
-🎉 Welcome to **Country Flag Tray App** – a minimalistic yet powerful tool that displays your country’s flag in the system tray based on your IP address! 🌐 
+## 🛠️ Prerequisites
 
----
-
-## 🚀 Features
-- **🌎 Auto Country Detection**: Uses IP-based geolocation to identify your country.
-- **🏴 Real-Time Flag Icon**: Fetches and displays your country’s flag directly in your system tray.
-- **🖱️ Intuitive Controls**: Quit the app with a single click on the tray menu.
-- **⚡ Lightweight & Fast**: Minimal resource consumption with multithreading for smooth operation.
-
----
-
-## 🖼️ Preview
-
-<p align="center">
-  <img src="https://flagcdn.com/w40/us.png" width="60" alt="Country Flag"> 
-  <br>
-  Example of the US flag displayed in the tray icon.
-</p>
-
----
+- Python 3.7+
+- pip (Python package manager)
 
 ## 📦 Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/mixtrus/country-flag-app.git
-   cd country-flag-app
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/mixtrus/country-flag-tray
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Navigate to project directory
+cd country-flag-tray
 
-3. **Run the app**:
-   ```bash
-   python app.py
-   ```
-
----
-
-## 🛠️ Requirements
-- Python 3.8+
-- Internet connection (for fetching IP and flag)
-- `requests`, `Pillow`, `pystray`
-
----
-
-## 💻 Usage
-
-Just run the app, and the flag for your detected country will appear in your system tray! 🏳️ Click the icon to access the menu and quit when you're done.
-
----
-
-## 🔧 Project Structure
-
-```plaintext
-📂 country-flag-app
-├── app.py                # Main script
-├── requirements.txt      # Dependencies
-└── README.md             # This file
+# Install dependencies
+pip install -r requirements.txt
 ```
 
----
+## 🔧 Dependencies
+
+- `requests`
+- `Pillow`
+- `pystray`
+
+## 🚀 Quick Start
+
+```bash
+python country_flag_tray.py
+```
 
 ## 🤝 Contributing
 
-Feel free to fork the repository and submit pull requests! Contributions are always welcome. 🤩
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
+## 📄 License
 
-## 💌 Contact
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-If you have any questions, feel free to reach out:
+## 🙌 Show Your Support
 
-📧 **Email**: [themixtrus@gmail.com](mailto:themixtrus@gmail.com)  
-🐙 **GitHub**: [https://github.com/mixtrus](https://github.com/mixtrus)
+If you enjoy this project, please give it a ⭐ Star on GitHub!
 
----
+## 👤 Author
 
-## ⭐ Star the Project
+- **Saman Sohrabi**
+  - Email: themixtrus@gmail.com
+  - GitHub: [@mixtrus](https://github.com/mixtrus)
 
-If you enjoyed this project or found it helpful, please consider giving it a ⭐ on GitHub! It helps me keep creating cool projects like this. 😊
+## 🏷️ Badges
 
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute! 🙌
-
----
-
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/mixtrus">Saman Sohrabi</a> 🌟
-</p>
-```
-
-
+![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
+![GitHub stars](https://img.shields.io/github/stars/mixtrus/country-flag-tray?style=social)
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
