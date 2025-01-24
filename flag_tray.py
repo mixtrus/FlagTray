@@ -1,11 +1,4 @@
-# requirements.txt
-# ---------------
-# requests
-# Pillow
-# pystray
-
 import sys
-import time
 import threading
 import requests
 from io import BytesIO
@@ -15,11 +8,11 @@ from pystray import MenuItem as item
 
 def get_country_code():
     """
-    Returns the 2-letter country code based on the current IP.
-    Fallback is 'US' if unable to reach the service.
+    Fetches the 2-letter country code from ip-api.com.
+    If it fails, returns 'US'.
     """
     try:
-        response = requests.get('http://ip-api.com/json/', timeout=5)
+        response = requests.get("http://ip-api.com/json/", timeout=5)
         data = response.json()
         return data.get('countryCode', 'US')
     except:
@@ -27,8 +20,8 @@ def get_country_code():
 
 def fetch_flag_image(country_code):
     """
-    Fetches a 40x30 (approx) PNG flag image from flagcdn.com.
-    If fetching fails, returns a simple gray image placeholder.
+    Fetches a 40x30 (approx) PNG flag from flagcdn.com based on the country code.
+    Returns a gray placeholder if the fetch fails.
     """
     try:
         url = "https://flagcdn.com/w40/{}.png".format(country_code.lower())
@@ -38,45 +31,52 @@ def fetch_flag_image(country_code):
     except:
         return Image.new('RGB', (40, 30), color='gray')
 
-def on_quit(icon, item):
+def on_quit(icon, _):
     """
-    Cleanly stop the tray icon and exit the program.
+    Cleanly stops the tray icon and exits the program.
     """
     icon.stop()
     sys.exit()
 
+def schedule_flag_update(icon):
+    """
+    Uses a threading.Timer to periodically check if the country code has changed.
+    If it has, updates the tray icon image in real-time.
+    Then schedules itself again.
+    """
+    new_code = get_country_code()
+    if new_code != schedule_flag_update.current_code:
+        schedule_flag_update.current_code = new_code
+        new_flag = fetch_flag_image(new_code)
+        # Directly update the icon image (forcing refresh).
+        icon.icon = new_flag
+        icon.visible = True
+
+    # Schedule the next check in 10 seconds (adjust as desired).
+    timer = threading.Timer(10, schedule_flag_update, [icon])
+    timer.daemon = True
+    timer.start()
+
 def create_tray_icon():
     """
-    Creates the tray icon with the current flag.
-    Spawns a background thread to update the flag in real time (periodically).
+    Initializes the tray icon with the current IP-based country flag,
+    and starts the periodic update process via schedule_flag_update.
     """
-    # Initial country/flag
-    current_code = get_country_code()
-    flag_image = fetch_flag_image(current_code)
-    # Define the tray menu
+    initial_code = get_country_code()
+    schedule_flag_update.current_code = initial_code  # store current code at module level
+    initial_flag = fetch_flag_image(initial_code)
+
+    # Define the menu for the tray icon
     menu = (item('Quit', on_quit),)
-    # Create the icon object
-    icon = pystray.Icon("Country Flag", flag_image, "Country Flag", menu)
 
-    def update_flag_periodically():
-        """
-        Periodically checks if the country code has changed
-        and updates the tray icon accordingly.
-        """
-        nonlocal current_code
-        while icon.visible:
-            time.sleep(60)  # Check every 60 seconds
-            new_code = get_country_code()
-            if new_code != current_code:
-                current_code = new_code
-                icon.icon = fetch_flag_image(new_code)
-                icon.visible = True  # Force re-draw the icon
+    # Create the tray icon
+    icon = pystray.Icon("Country Flag", initial_flag, "Country Flag", menu)
 
-    # Start the background thread to monitor and update the flag
-    threading.Thread(target=update_flag_periodically, daemon=True).start()
+    # Start the periodic update
+    schedule_flag_update(icon)
 
-    # Run the tray icon
+    # Run the tray icon (blocks until quit)
     icon.run()
 
 if __name__ == "__main__":
-    threading.Thread(target=create_tray_icon).start()
+    create_tray_icon()
