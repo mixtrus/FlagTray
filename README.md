@@ -17,10 +17,10 @@ Simple Python application that displays your current country's flag in the syste
 
 ```bash
 # Clone the repository
-git clone https://github.com/mixtrus/country-flag-tray
+git clone https://github.com/mixtrus/FlagTray
 
 # Navigate to project directory
-cd country-flag-tray
+cd FlagTray
 
 # Install dependencies
 pip install -r requirements.txt
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ## 🚀 Quick Start
 
 ```bash
-python country_flag_tray.py
+python FlagTray.py
 ```
 
 ## 🤝 Contributing
