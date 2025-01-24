@@ -1,4 +1,4 @@
-Here is an aesthetically designed `README.md` file for your project:
+
 
 ```markdown
 # 🌍 Country Flag Tray App 🇺🇳
@@ -103,4 +103,4 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 </p>
 ```
 
-This `README.md` file is designed to be visually appealing and informative, featuring badges, banners, emojis, and a well-organized structure to captivate visitors. Feel free to customize it further to fit your style!
+
