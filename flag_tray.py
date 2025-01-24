@@ -16,12 +16,12 @@ def get_country_code():
 
 def fetch_flag_image(country_code):
     try:
-        url = f"https://flagcdn.com/w40/{country_code.lower()}.png"
+        url = "https://flagcdn.com/w40/{}.png".format(country_code.lower())
         response = requests.get(url, timeout=5)
         image = Image.open(BytesIO(response.content))
         return image
     except:
-        return Image.new('RGB', (40, 30), color = 'gray')
+        return Image.new('RGB', (40, 30), color='gray')
 
 def on_quit(icon, item):
     icon.stop()
