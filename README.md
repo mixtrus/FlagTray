@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ## 🚀 Quick Start
 
 ```bash
-python FlagTray.py
+python flag_tray.py
 ```
 
 ## 🤝 Contributing
